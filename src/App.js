@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GlobalStyle } from './styles/global.styles.css';
 import Search from './Search';
 import Picture from './Picture';
@@ -6,13 +6,15 @@ import Header from './Header';
 
 const App = () => {
 
+  const [breed, setBreed] = useState('poodle');
+
   return (
     <>
     <GlobalStyle/>
       <div className='app-container'>
         <Header/>
         <div className='break'></div>
-        <Search />
+        <Search term={breed} search={setBreed}/>
         <div className='break'></div>
         <Picture />
       </div>
