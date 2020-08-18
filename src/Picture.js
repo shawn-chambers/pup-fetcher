@@ -1,10 +1,17 @@
 import React from 'react';
 
-const Picture = () => {
+const Picture = ({ picture, error }) => {
   return (
-    <div className='picture-container'>
-      <img alt='dog'></img>
-    </div>
+    <>
+    {
+      !error ?
+      <div className='picture-container'>
+        <img alt='dog' src={picture}></img>
+      </div>
+      :
+      <div className='error'>That's a rare breed! We can't fetch one of those</div>
+    }
+    </>
   );
 };
 
