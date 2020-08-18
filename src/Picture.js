@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Picture = ({ picture, error }) => {
+const Picture = ({ picture }) => {
   return (
     <>
     {
-      !error ?
+      picture ?
       <div className='picture-container'>
         <img alt='dog' src={picture}></img>
       </div>

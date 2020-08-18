@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { GlobalStyle } from './styles/global.styles.css';
+import usePupFetcher from './hooks/usePupFetcher';
 import Search from './Search';
 import Picture from './Picture';
 import Header from './Header';
@@ -8,22 +8,7 @@ import Header from './Header';
 const App = () => {
 
   const [breed, setBreed] = useState('poodle');
-  const [picture, setPicture] = useState('');
-  const [fetch, setFetch] = useState('poodle');
-  const [isError, setError] = useState(false);
-
-  useEffect(() => {
-    const query = async () => {
-      try {
-        const results = await axios.get(`https://dog.ceo/api/breed/${fetch}/images/random`);
-        setError(false);
-        setPicture(results.data.message);
-      } catch {
-        setError(true);
-      }
-    }
-    query();
-  }, [fetch]);
+  const [picture, setPicture] = usePupFetcher('poodle');
 
   return (
     <>
@@ -31,9 +16,9 @@ const App = () => {
       <div className='app-container'>
         <Header/>
         <div className='break'></div>
-        <Search term={breed} search={setBreed} fetch={setFetch}/>
+        <Search term={breed} search={setBreed} fetch={setPicture}/>
         <div className='break'></div>
-        <Picture picture={picture} error={isError}/>
+        <Picture picture={picture}/>
       </div>
     </>
   );
